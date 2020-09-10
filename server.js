@@ -13,4 +13,4 @@ app.use('/', (req,res) => res.send('Hello'))
 
 const PORT =  process.env.PORT
 
-app.listen(PORT,console.log(`AF runing in:${process.env.NODE_ENV} on port :${PORT}`))
+app.listen(PORT,console.log(`AF runing in:${process.env.NODE_ENV} on port :${PORT}`.yellow.underline))
