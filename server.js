@@ -4,9 +4,18 @@ const colors = require('colors')
 const path = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const UssdMenu = require('ussd-menu-builder')
 dotenv.config()
 const app = express()
 
+
+var menu = UssdMenu()
+// initialise africas talking 
+const credentials = {
+    apiKey: process.env.API_KEY,         // use your sandbox app API key for development in the test environment
+    username: 'sandbox',      // use 'sandbox' for development in the test environment
+};
+const Africastalking = require('africastalking')(credentials);
 app.use(express.json())
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
