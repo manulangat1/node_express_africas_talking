@@ -9,7 +9,7 @@ dotenv.config()
 const app = express()
 
 
-var menu = UssdMenu()
+var menu = new  UssdMenu()
 // initialise africas talking 
 const credentials = {
     apiKey: process.env.API_KEY,         // use your sandbox app API key for development in the test environment

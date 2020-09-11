@@ -1,7 +1,7 @@
 const User = require('../models/User')
 
 
-exports.Registration = async (req,res) => {
+exports.Index = async (req,res) => {
     menu.startState({
         run:() => {
             const {phoneNumber} = menu.args
@@ -14,6 +14,16 @@ exports.Registration = async (req,res) => {
             }    else {
                 menu.con(registerInstruction)
             }
-        }
+        },
+        next: {
+			'*\\d{4}': 'dashboard',
+			'*\\w+': 'register'
+		}
     })
+    menu.state('invalidOption', {
+		run: () => {
+			menu.end(`Invalid option`);
+		}
+	});
+    return await menu
 }
