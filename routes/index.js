@@ -1,9 +1,9 @@
 const express = require('express')
-const { Index } = require('../controllers/menu')
+const { entryIndexs } = require('../controllers')
 
 const router = express.Router()
 
 
-router.route('/').post(Index)
+router.route('/').post(entryIndexs)
 
 module.exports = router 

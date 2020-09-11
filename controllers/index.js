@@ -1,16 +1,17 @@
-const menu = require('./menu')
-
-exports.Index = async (req,res) => {
+const {  Indexs } = require('./menu')
+const UssdMenu = require('ussd-menu-builder')
+const User = require('../models/User')
+exports.entryIndexs = async (req,res) => {
     try {
-        console.log('Hitting it')
-        menu.run(req.body,function(ussdResult) {
-            res.send(ussdResult)
-        })
-    } catch (err){
+
+        const { sessionId,serviceCode,phoneNumber,text } = req.body
+    const textValue = text.split('*').length
+    // const user = await User.findOne({tel:phoneNumber})
+    console.log(user)
+     await  Indexs(req,res)
+    } catch (err) {
         console.log(`ERROR:${err}`)
-        // res.status(500).json({
-        //     success:false,
-        //     message:"Eror"
-        // })
+        res.contentType('text/plain')
+        res.status(500).send("Invalid")
     }
 }

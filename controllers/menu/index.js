@@ -1,29 +1,24 @@
 const User = require('../../models/User')
 const UssdMenu = require('ussd-menu-builder')
-var menu = new  UssdMenu()
-exports.Index = async(req,res) => {
+// var menu = new  UssdMenu()
+exports.Indexs = async(req,res) => {
+    const menu = new UssdMenu()
+    // const user = await User.findOne({tel:phoneNumber})
     menu.startState({
-        run: function(state)  {
-            // const {phoneNumber} = menu.args
-            // const user = User.findOne({tel:phoneNumber})
-            const registerInstruction = `Welcome to mSACCO \nEnter your first name to register:`;
-            if (user){
-                menu.con(
-                    `Welcome back, ! \nEnter your 4-digit PIN to continue`
-                ) 
-            }    else {
-                menu.con(registerInstruction)
-            }
+        run: () => {
+            // use menu.con() to send response without terminating session      
+            menu.con('Welcome. Choose option:' +
+                '\n1. Show Balance' +
+                '\n2. Buy Airtime');
         },
+        // next object links to next state based on user input
         next: {
-			'*\\d{4}': 'dashboard',
-			'*\\w+': 'register'
-		}
-    })
-    menu.state('invalidOption', {
-		run: () => {
-			menu.end(`Invalid option`);
-		}
-	});
-    return  menu
+            '1': 'showBalance',
+            '2': 'buyAirtime'
+        }
+    });
+    // menu.()
+    return menu.run(req.body, ussdResult => {
+        res.status(200).send(ussdResult);
+    });
 }
