@@ -25,6 +25,13 @@ app.use(bodyParser.json())
 if (process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
 }
+
+
+// import your rooutes here 
+const Men = require('./routes')
+app.use('/',Men)
+
+
 app.use('/', (req,res) => res.send('Hello'))
 
 const PORT =  process.env.PORT
