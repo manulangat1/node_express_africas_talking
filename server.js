@@ -9,7 +9,7 @@ dotenv.config()
 const app = express()
 
 
-var menu = new  UssdMenu()
+
 // initialise africas talking 
 const credentials = {
     apiKey: process.env.API_KEY,         // use your sandbox app API key for development in the test environment
@@ -32,7 +32,7 @@ const Men = require('./routes')
 app.use('/',Men)
 
 
-app.use('/', (req,res) => res.send('Hello'))
+// app.use('/', (req,res) => res.send('Hello'))
 
 const PORT =  process.env.PORT
 
