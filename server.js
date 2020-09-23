@@ -6,8 +6,12 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const UssdMenu = require('ussd-menu-builder')
 dotenv.config()
-const app = express()
 
+
+const app = express()
+//import db and initialiase it 
+const connectDB = require('./config/db')
+connectDB()
 
 
 // initialise africas talking 
